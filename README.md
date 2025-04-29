@@ -72,6 +72,39 @@ User authentication mechanisms are essential to ensure secure and authorized acc
 Client-server chat applications are versatile tools that facilitate real-time communication between users over a network. They incorporate various components, including server-side and client-side elements, and must consider factors such as security, scalability, and concurrency. As technology continues to advance, client-server chat applications remain integral for collaborative communication in various domains.
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
+## Program:
+Client
+```
+import socket 
+s=socket.socket() 
+s.bind(('localhost',8000)) 
+s.listen(5) 
+c,addr=s.accept() 
+address={"165.165.80.80":"6A:08:AA:C2","165.165.79.1":"8A:BC:E3:FA"}; 
+while True: 
+    ip=c.recv(1024).decode() 
+    try: 
+        c.send(address[ip].encode()) 
+    except KeyError: 
+        c.send("Not Found".encode())     
+```
+server
+```
+import socket 
+s=socket.socket() 
+s.connect(('localhost',8000)) 
+while True:
+    ip=input("Enter logical Address : ") 
+    s.send(ip.encode()) 
+    print("MAC Address",s.recv(1024).decode())
+```
+## Output:
+client
+
+![WhatsApp Image 2025-04-29 at 15 47 47_b6eec838](https://github.com/user-attachments/assets/9d81138a-f276-4b2a-8695-bc0f77bb0ca3)
+server
+
+![WhatsApp Image 2025-04-29 at 15 47 21_176d5211](https://github.com/user-attachments/assets/69970515-cb8e-4caa-954e-b9862d80c72c)
 
 
 ## Result:
